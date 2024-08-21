@@ -434,7 +434,7 @@ while getopts n:i:o:c:b:x:f:p:C:huSewsrDHqAdjRyUzgmFZLklv args; do
         f) split_array files "${tmp[*]}" && run=1 ;;
         i) ipadir="$(realpath -q "${tmp[*]}")" && [[ -z "$ipadir" && "$os" == "iOS" ]] && ipadir="${tmp[*]}" && run=1 ;;
         n) name="${tmp[*]}" ;;
-        o) outdir="$(realpath -q "${tmp[*]}")" && [[ -z "$outdir" && "${tmp[*]}" != /* ]] && outdir="$(pwd)/${tmp[*]}" ;;
+        o) outdir="${tmp[*]}" && [[ "$os" == "MacOS" && "${tmp[*]}" != /* ]] && outdir="$(pwd)/${tmp[*]}" ;;
         p) displayname="${tmp[*]}" && run=1 ;;
         x) IPATOOL_EMAIL="${tmp[0]}" && unset "tmp[0]" && IPATOOL_PASSWORD="${tmp[*]}" ;;
         C) country_code="${tmp[*]}" ;;
